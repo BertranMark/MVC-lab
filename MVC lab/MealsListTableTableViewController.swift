@@ -13,12 +13,29 @@ class MealsListTableTableViewController: UITableViewController {
     var meals: [ Meal ] = []
     var chosenIndex : Int = 0
     
+    var storage : [ Meal ] = [
+        Meal(
+            name: "Яичница",
+            photo: UIImage(named: "DefaultImage.jpg")!,
+            notes: "",
+            rating: 5,
+            timestamp: Date()
+        ),
+        Meal(
+            name: "Котлета",
+            photo: UIImage(named: "DefaultImage.jpg")!,
+            notes: "",
+            rating: 7,
+            timestamp: Date()
+        )
+    ]
+    
     func saveMeals() {
-        
+        storage = meals
     }
     
     func loadMeals() {
-        
+        meals = storage
     }
     
     override func viewDidLoad() {
@@ -59,6 +76,8 @@ class MealsListTableTableViewController: UITableViewController {
         chosenIndex = indexPath.row
         performSegue(withIdentifier: "Open", sender: nil)
     }
+    
+   
 
     /*
     // Override to support conditional editing of the table view.
@@ -133,7 +152,7 @@ class MealsListTableTableViewController: UITableViewController {
             )
             meals.append(newmeal)
             tableView.reloadData()
-            
+            saveMeals()
         }
         
     }
